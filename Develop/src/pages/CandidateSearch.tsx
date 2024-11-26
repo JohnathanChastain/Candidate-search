@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { searchGithub, searchGithubUser } from '../api/API';
+import { useState, useEffect, SetStateAction } from 'react';
+import { searchGithub } from '../api/API';
 
 const CandidateSearch = () => {
   const [search, setSearch] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<{ id: number; html_url: string; login: string }[]>([]);
 
   useEffect(() => {
     if (!search) {
@@ -15,7 +15,7 @@ const CandidateSearch = () => {
     });
   }, [search]);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -35,8 +35,5 @@ const CandidateSearch = () => {
   );
 };
 
-const CandidateSearch = () => {
-  return <h1>CandidateSearch</h1>;
-};
 
 export default CandidateSearch;
