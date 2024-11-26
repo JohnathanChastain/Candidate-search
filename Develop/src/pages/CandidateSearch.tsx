@@ -7,11 +7,14 @@ const CandidateSearch = () => {
 
   useEffect(() => {
     if (!search) {
+      console.log('No search term');
       return;
     }
+    console.log(search);
 
-    searchGithub(search).then((data) => {
-      setResults(data.items);
+    searchGithub().then((data) => {
+      console.log(data);
+      setResults(data);
     });
   }, [search]);
 
